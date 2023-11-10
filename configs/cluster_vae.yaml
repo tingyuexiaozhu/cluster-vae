@@ -1,0 +1,56 @@
+model_params:
+  name: 'cluster_vae'
+  in_channels: 3
+  latent_dim: 128
+
+#训练参数
+data_params:
+  data_dir: "./Data/"
+  related_data: "./similarity_matrix_train.pth"
+  num_samples: 180
+  train_batch_size: 64
+  val_batch_size: 64
+  patch_size: 64
+  num_workers: 8
+
+#验证参数
+eval_params:
+  data_dir: "./Data/"
+  related_data: "./similarity_matrix_val.pth"
+  num_samples: 180
+  train_batch_size: 64
+  val_batch_size: 64
+  patch_size: 64
+  num_workers: 8
+
+#测试参数
+test_params:
+  data_dir: "./Data/"
+  related_data: ""
+  num_samples: 144
+  train_batch_size: 64
+  val_batch_size: 64
+  patch_size: 64
+  num_workers: 4
+
+
+exp_params:
+  LR: 0.00001
+  weight_decay: 0.0
+  scheduler_gamma: 0.95
+  kld_weight: 0.0001
+  manual_seed: 1265
+
+trainer_params:
+  gpus: [ 0,1 ]
+  max_epochs: 100
+
+logging_params:
+  save_dir: "./logs/"
+  new_save_dir: "new_logs"
+  val_save_dir: "val_logs"
+  name: "cluster_vae"
+
+reconstruct_params:
+  num_reconstruct: 5
+  total_num_reconstruct: 180
